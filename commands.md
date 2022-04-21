@@ -28,3 +28,13 @@
 ### Delete a pod
 
 ```kubectl delete pods nginx -n test```
+
+### To get logs
+
+- followup logs
+
+```kubectl logs  -f  nginx -c nginx -n test```
+
+- tailered logs[number of logs]
+
+```kubectl logs  --tail=10  nginx -c nginx -n test```
