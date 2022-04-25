@@ -38,3 +38,7 @@
 - tailered logs[number of logs]
 
 ```kubectl logs  --tail=10  nginx -c nginx -n test```
+
+## Service
+
+```kubectl expose pod nginx --type=NodePort  --name=nginx -n test```

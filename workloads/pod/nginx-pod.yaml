@@ -4,7 +4,7 @@ metadata:
   name: nginx
   namespace: test
   labels:
-    name: lb
+    name: lb1
 spec:
   containers:
   - name: nginx
@@ -15,3 +15,8 @@ spec:
         cpu: "255m"
     ports:
       - containerPort: 80
+
+
+# clusterIP
+# NodePort
+# Loadbalancer
