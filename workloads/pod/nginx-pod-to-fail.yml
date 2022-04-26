@@ -19,3 +19,12 @@ spec:
     image: jpalaparthi/pingapp
     ports:
       - containerPort: 50080
+
+
+# Create a pod that must run pingapp/ or any other app you create
+
+# create a service to access that app
+
+# access it with LoadBalancer , NodePort and ClusterIP
+
+# Cannot accesss through ClusterIP check that

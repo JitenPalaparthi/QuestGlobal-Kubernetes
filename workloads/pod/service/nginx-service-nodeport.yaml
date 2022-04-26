@@ -13,3 +13,5 @@ spec:
   selector:
     name: lb1
   # The label of the pod should be the selector for the service
+
+  // pingapp

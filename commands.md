@@ -42,3 +42,11 @@
 ## Service
 
 ```kubectl expose pod nginx --type=NodePort  --name=nginx -n test```
+
+### Scaling
+
+- scale up the replication controller
+  
+```kubectl scale --replicas rc/nginx-rc -n test```
+
+- 
