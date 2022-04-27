@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: test
+  labels:
+    app: nginx
+    type: depoloy
+spec:
+  minReadySeconds: 12
+  replicas: 10
+  revisionHistoryLimit: 20
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      #nodeName: minikube-m02
+      nodeSelector:
+        colour: blue 
+        priority: high
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: nginx
+          image: nginx:1.21
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: default
+            containerPort: 80
+    

@@ -49,4 +49,18 @@
   
 ```kubectl scale --replicas rc/nginx-rc -n test```
 
-- 
+### ADD Labels to the node
+
+```kubectl label nodes minikube-m04 colour=blue priority=high```
+
+- add label to replicaset
+
+```kubectl label rs nginx-rs deployment=replicas -n test```
+
+# AWS Cli
+
+- ```aws configure```
+
+- ```aws eks --region us-east-1 update-kubeconfig --name demo_cluster```
+
+- ```aws sts get-caller-identity```

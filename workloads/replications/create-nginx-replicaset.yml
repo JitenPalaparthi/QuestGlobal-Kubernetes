@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  namespace: test
+  labels:
+    app: nginx
+    type: rs
+spec:
+  minReadySeconds: 12
+  replicas: 30
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      #nodeName: minikube-m02
+      nodeSelector:
+        colour: blue 
+        priority: high
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: nginx
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: default
+            containerPort: 80
+
+
+    
