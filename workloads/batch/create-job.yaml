@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: invoicejob
+  namespace: test
+  labels:
+    job-app: invoicejob
+spec:
+  parallelism: 4
+  ttlSecondsAfterFinished: 100
+  manualSelector: true
+  selector:
+    matchLabels:
+      job-app: invoicejob
+  template:
+    metadata:
+      labels:
+        job-app: invoicejob
+    spec:
+      containers:
+      - name: invoicejob
+        image: jpalaparthi/invoicejob:v0.0.1
+        command: ["./app","--count=10"]
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Never

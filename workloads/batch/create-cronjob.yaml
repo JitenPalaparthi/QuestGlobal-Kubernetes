@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: invoicecronjob
+  namespace: test
+spec:
+
+  schedule:  "* 14 * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        job-app: invoicejob
+    spec:
+      template:
+        metadata:
+          labels:
+            job-app: invoicecronjob
+        spec:
+          containers:
+          - name: invoicejob
+            image: jpalaparthi/invoicejob:v0.0.1
+            command: ["./app","--count=10"]
+            imagePullPolicy: IfNotPresent
+          restartPolicy: Never
