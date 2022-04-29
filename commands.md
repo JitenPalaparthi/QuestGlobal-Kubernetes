@@ -64,3 +64,9 @@
 - ```aws eks --region us-east-1 update-kubeconfig --name demo_cluster```
 
 - ```aws sts get-caller-identity```
+
+- ```aws eks create-cluster --name mycluster --role-arn arn:aws:iam::196139220645:role/demo --region us-east-1 --resources-vpc-config subnetIds=subnet-0ff0222db0a8255ff,subnet-018efc0f5769151db,securityGroupIds=sg-05424846ba0def0c4```
+
+```aws eks update-kubeconfig --region us-east-1 --name mycluster```
+
+- ```eksctl create nodegroup --cluster mycluster --region us-east-1 --name mynodegroup --node-type m3.medium --nodes 3 --nodes-min 2 --nodes-max 4```

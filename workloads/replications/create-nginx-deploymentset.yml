@@ -33,3 +33,6 @@ spec:
           - name: default
             containerPort: 80
     
+
+
+error: you must be logged in to the server (unauthorized) eks kubectl

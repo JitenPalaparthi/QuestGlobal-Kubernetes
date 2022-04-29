@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless
+  namespace: test
+spec:
+  clusterIP: None # This tells that create a headless service
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-ss
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: nginx-headless
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+          
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      name: standard
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+# Any CSI complaint volume can be provisioned
+# Container Storage Interface
+# Azure, AWS , GCP or StorageOS, MinIO ... rhere are many volume vendors
+# Block storage, Blob storage, Network Storage, Object Storage, Standard Storage, File Storage
+
+# Any CNI complaint networking plugin can be used
+
+# Any CRI complaint container runtime can be used as a container runtime in kubernetes.
+

@@ -22,3 +22,5 @@ spec:
             command: ["./app","--count=10"]
             imagePullPolicy: IfNotPresent
           restartPolicy: Never
+N1iAe8RrnVnIsuEbXCARoN0AZaSh2+dOpu7kmMoC
+AKIAS3KWO72SSBC44JPN
