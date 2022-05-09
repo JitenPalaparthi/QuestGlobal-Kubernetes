@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: test
+  labels:
+    currency: Rupee
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+    env:
+      - name: PORT
+        valueFrom:
+          configMapKeyRef:
+            name: nginx-cm
+            key: port
+
+      - name: COUNTRY
+        valueFrom:
+          configMapKeyRef:
+            name: nginx-cm
+            key: country
+
+      - name: CURRENCY
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.labels['currency']
+
+    ports:
+      - containerPort: 80
