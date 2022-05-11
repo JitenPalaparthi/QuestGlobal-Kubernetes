@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pingapp
+  namespace: test
+  labels:
+    name: lb
+spec:
+  containers:
+  - name: pingapp
+    image: jpalaparthi/pingapp
+    ports:
+      - containerPort: 50080
+    # livenessProbe:
+    #   httpGet:
+    #     path: /health
+    #     port: 50080
+    #   initialDelaySeconds: 10
+    #   periodSeconds: 10
+    #   failureThreshold: 1
+    #   successThreshold: 1
+    # readinessProbe:
+    #   httpGet:
+    #     path: /ping
+    #     port: 50080
+    #     initialDelaySeconds: 10
+    startupProbe:
+      httpGet:
+        path: /ping
+        port: 50080
+      initialDelaySeconds: 30
+
+        
